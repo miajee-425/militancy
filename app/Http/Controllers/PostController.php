@@ -13,7 +13,9 @@ class PostController extends Controller
 {
     public function index(Request $request)
     {
-        $posts = Post::all(['id', 'name']);
+        #$posts = Post::all(['id', 'name']);
+        $posts = Post::with('comments')->get();
+        dd($posts->first()->comments);
         $users  = User::all();
         $posts = $users->first()->posts;
         dd($posts);
