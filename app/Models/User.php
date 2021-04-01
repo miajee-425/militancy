@@ -51,19 +51,17 @@ class User extends Authenticatable
     /**
      * @var RemoteDB
      */
-    public function posts()
-    {
-       return Post::where('user_id', $this->id)->get();
-    }
-
 /*    public function posts()
     {
-         $this->hasMany(User::class);
-         dd(32132);
-         return $this;
+       return Post::where('user_id', $this->id)->get();
     }*/
 
-    public function getAttribute($key)
+    public function posts()
+    {
+         return $this->setConnection('mysql2')->hasMany(Post::class);
+    }
+
+/*    public function getAttribute($key)
     {
         if (array_key_exists($key, $this->attributes) || $this->hasGetMutator($key)) {
             return $this->getAttributeValue($key);
@@ -77,7 +75,7 @@ class User extends Authenticatable
         }
 
         return $this->getRelationValue($key);
-    }
+    }*/
 /*
     public function hasMany($related, $foreignKey = null, $localKey = null)
     {

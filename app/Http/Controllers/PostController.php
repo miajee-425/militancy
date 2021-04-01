@@ -16,7 +16,7 @@ class PostController extends Controller
         $posts = Post::all(['id', 'name']);
         $users  = User::all();
         $posts = $users->first()->posts;
-
+        dd($posts);
         return response()->json(['posts'=>$posts]);
     }
     public function store()
